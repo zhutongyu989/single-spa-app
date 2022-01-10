@@ -1,0 +1,58 @@
+<html>
+
+<body>
+    <ul>
+        <a id="go-vue">
+            <li>
+                去看vue
+            </li>
+        </a>
+        <a id="go-react">
+            <li>
+                去看react
+            </li>
+        </a>
+        <a id="go-home">
+            <li>
+                回首页
+            </li>
+        </a>
+    </ul>
+
+
+
+
+    <h1 id="home">我是首页</h1>
+    <div id="react"></div>
+    <div id="vue"></div>
+    <script src="/dist/single-spa.config.js"></script>
+</body>
+
+<script type="text/javascript">
+    const href = 'http://localhost:8080';
+
+    function changeTargetHref(ele) {
+            let str = ele.split('-')[1];
+            console.log(str,'str=====')
+            const targetEle = document.getElementById(ele);
+            targetEle.href = `${href}/${str}`;
+    }
+
+    window.onload = function () {
+        changeTargetHref('go-vue');
+        changeTargetHref('go-react');
+        changeTargetHref('go-home');
+    }
+
+    const isFind = window.location.href.includes('vue') || window.location.href.includes('react');
+    const ele = document.getElementById('home');
+    const vue = document.getElementById('vue');
+    const react = document.getElementById('react');
+    ele.style.display = isFind ? 'none' : 'block';
+    vue.style.display = window.location.href.includes('vue')? 'block':'none';
+    react.style.display = window.location.href.includes('react')? 'block':'none';
+
+
+</script>
+
+</html>
